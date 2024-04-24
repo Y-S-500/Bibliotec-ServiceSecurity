@@ -22,16 +22,16 @@ function save() {
       "dateOfBirth": $("#dateOfBirth").val(),
       "gender": $("#gender").val(),
       "address": $("#address").val() + ' No ' + $("#numeral").val() + ' - ' + $("#numeral2").val()  +' - ' + $("#description").val(),
-      "ubication": $("#city_id").val(),
-      "city": {
+      "municipality": {
          "id": selectedCityId
       },
       "state": true
     };
+    
 
 
     $.ajax({
-      url: "http://localhost:9000/service-security/v1/api/person/validationSave",
+      url: "http://localhost:9000/service-security/v1/api/person",
       method: "POST",
       dataType: "json",
       contentType: "application/json",
@@ -85,7 +85,7 @@ function User(id) {
           timer: 2000, 
           buttons: false 
       }).then(()=>{
-        window.location.href = '../login.html';
+        window.location.href = '../../view/navbar.html';
       });
         
         
@@ -182,7 +182,7 @@ function loadCity() {
                 <td>${item.dateOfBirth}</td>
                 <td>${item.gender}</td>
                 <td>${item.address}</td>
-                <td>${item.city.name_city}</td>
+                <td>${item.municipality.name}</td>
                 <td>${item.deletedAt ? "Eliminado" : "Activo"}</td>
                 <td>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="findById(${item.id})">
